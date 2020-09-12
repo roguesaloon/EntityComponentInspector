@@ -33,7 +33,7 @@ additionally there is now an optional override (added by roguesaloon) to not ren
 Add method `void OnEditorGUI(string label, out bool shouldOverride)` to your component. And set shouldOverride to false to hide component in editor.
 
 ```
-  
+
 ### Writing separate editor class
 
 Create new class implementing `IComponentEditor<T>` where T is component type.
