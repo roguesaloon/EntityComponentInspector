@@ -9,7 +9,7 @@ Add following to your package manifest (Packages/manifest.json):
 ## Usage
 ### Adding inspector code directly to component struct
 
-Add method `void OnEditorGUI(string label)` to your component.
+Add method `void OnInspectorGUI(string label)` to your component.
 
 ```
 using Unity.Entities;
@@ -19,7 +19,7 @@ public struct DebugName : IComponentData
     public NativeString64 Value;
 
 #if UNITY_EDITOR
-    void OnEditorGUI(string label)
+    void OnInspectorGUI(string label)
     {
         Value = new NativeString64(UnityEditor.EditorGUILayout.TextField(label, Value.ToString()));
     }
@@ -27,17 +27,17 @@ public struct DebugName : IComponentData
 }
 ```
 additionally there is now an optional override (added by roguesaloon) to not render the component in the inspector (allowing it to be completely overridden, or hidden)
-Add method `void OnEditorGUI(string label, out bool shouldHideComponent)` to your component.
+Add method `void OnInspectorGUI(string label, out bool shouldHideComponent)` to your component.
   
 ### Writing separate editor class
 
-Create new class implementing `IComponentEditor<T>` where T is component type.
+Create new class implementing `IComponentInspector<T>` where T is component type.
 
 ```
 using Unity.Properties;
 using UnityEditor;
 
-public class DebugNameEditor : IComponentEditor<DebugName>
+public class DebugNameEditor : IComponentInspector<DebugName>
 {
     public VisitStatus Visit<TContainer>(Property<TContainer, DebugName> property, ref TContainer container, ref DebugName value)
     {

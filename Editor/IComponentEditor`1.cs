@@ -1,5 +1,5 @@
 ﻿using Unity.Properties.Adapters;
 
-public interface IComponentEditor<T> : IComponentEditor, IVisit<T>
+public interface IComponentInspector<T> : IComponentInspector, IVisit<T>
 {
 }

@@ -21,7 +21,7 @@ public static class EntityInspectorExtension
     static void Init()
     {
         Selection.selectionChanged += OnSelectionChanged;
-        foreach (var type in TypeCache.GetTypesDerivedFrom<IComponentEditor>())
+        foreach (var type in TypeCache.GetTypesDerivedFrom<IComponentInspector>())
         {
             if (!type.IsAbstract && !type.IsGenericType)
             {
