@@ -4,7 +4,7 @@ Package for implementing custom entity component inspectors. updated and modifie
 ## Installation
 Add following to your package manifest (Packages/manifest.json):
 
-`"entity-inspector-extension": "https://github.com/roguesaloon/EntityComponentInspector"`
+`"entity-inspector-extension": "https://github.com/roguesaloon/EntityComponentInspector.git"`
 
 ## Usage
 ### Adding inspector code directly to component struct
@@ -39,7 +39,7 @@ using UnityEditor;
 
 public class DebugNameEditor : IComponentEditor<DebugName>
 {
-    public VisitStatus Visit<TContainer>(Property<TContainer, T> property, ref TContainer container, ref T value)
+    public VisitStatus Visit<TContainer>(Property<TContainer, DebugName> property, ref TContainer container, ref DebugName value)
     {
         value.Value = new NativeString64(EditorGUILayout.TextField(property.GetName(), value.Value.ToString()));
         return VisitStatus.Handled; // Change this to VisitStatus.Stop to prevent component being rendered at all
