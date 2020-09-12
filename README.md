@@ -27,7 +27,7 @@ public struct DebugName : IComponentData
 }
 ```
 additionally there is now an optional override (added by roguesaloon) to not render the component in the inspector (allowing it to be completely overridden, or hidden)
-Add method `void OnEditorGUI(string label, out bool shouldOverride)` to your component.
+Add method `void OnEditorGUI(string label, out bool shouldHideComponent)` to your component.
   
 ### Writing separate editor class
 

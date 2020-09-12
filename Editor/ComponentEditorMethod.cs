@@ -15,7 +15,7 @@ class ComponentEditorMethod
 		where T : struct, IComponentData
 	{
 		delegate void EditorGUIDelegate(ref T value, string label);
-		delegate void EditorGUIDelegateWithOverride(ref T value, string label, out bool shouldOverride);
+		delegate void EditorGUIDelegateWithOverride(ref T value, string label, out bool shouldHideComponent);
 
 		Delegate m_guiMethod;
 
@@ -26,10 +26,10 @@ class ComponentEditorMethod
 
 		public VisitStatus Visit<TContainer>(Property<TContainer, T> property, ref TContainer container, ref T value)
 		{
-			bool shouldOverride = false;
+			bool shouldHideComponent = false;
 			if(m_guiMethod is EditorGUIDelegate guiDelegate) guiDelegate(ref value, property.Name);
-			else if(m_guiMethod is EditorGUIDelegateWithOverride guiDelegateWithOverride) guiDelegateWithOverride(ref value, property.Name, out shouldOverride);
-			return shouldOverride ? VisitStatus.Stop : VisitStatus.Handled;
+			else if(m_guiMethod is EditorGUIDelegateWithOverride guiDelegateWithOverride) guiDelegateWithOverride(ref value, property.Name, out shouldHideComponent);
+			return shouldHideComponent ? VisitStatus.Stop : VisitStatus.Handled;
 		}
 	}
 
