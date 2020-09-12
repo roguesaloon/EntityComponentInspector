@@ -29,7 +29,6 @@ class ComponentEditorMethod
 			bool shouldOverride = false;
 			if(m_guiMethod is EditorGUIDelegate guiDelegate) guiDelegate(ref value, property.Name);
 			else if(m_guiMethod is EditorGUIDelegateWithOverride guiDelegateWithOverride) guiDelegateWithOverride(ref value, property.Name, out shouldOverride);
-			//m_guiMethod(ref value, property.Name, out shouldOverride);
 			return shouldOverride ? VisitStatus.Stop : VisitStatus.Handled;
 		}
 	}
